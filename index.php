@@ -17,9 +17,9 @@ $userController = new UserController($users);
 if ($_SERVER['REQUEST_URI'] === "/user/create" && $_SERVER['REQUEST_METHOD'] === 'POST') {
 	$requestData = $_POST;
 	$params = [
-		'email' => $requestData['email'],
-		'first_name' => $requestData['first_name'],
-		'last_name' => $requestData['last_name']
+		'email' => $requestData['email']?:'null',
+		'first_name' => $requestData['first_name']?:'null',
+		'last_name' => $requestData['last_name']?:'null'
 	];
 	$userController->addUser($params);
 } elseif ($_SERVER['REQUEST_URI'] === "/users" && $_SERVER['REQUEST_METHOD'] === 'GET') {
