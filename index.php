@@ -2,6 +2,7 @@
 include 'UserRepository.php';
 include 'UserController.php';
 include 'User.php';
+include 'Response.php';
 
 $dsn = "mysql:host=localhost;dbname=uvodo";
 try {
@@ -21,17 +22,18 @@ if ($_SERVER['REQUEST_URI'] === "/user/create" && $_SERVER['REQUEST_METHOD'] ===
 		'last_name' => $requestData['last_name']
 	];
 	$userController->addUser($params);
-}
-elseif ($_SERVER['REQUEST_URI'] === "/users" && $_SERVER['REQUEST_METHOD'] === 'GET') {
+} elseif ($_SERVER['REQUEST_URI'] === "/users" && $_SERVER['REQUEST_METHOD'] === 'GET') {
 
 	try {
-		$userController->getUsers();
+		echo Response::json(['users' => $userController->getUsers()],200);
 	} catch (JsonException $e) {
 		return $e->getMessage();
 	}
 
 } else {
-	return json_decode();
+	echo Response::json([
+		'error' => 'Url Not found'
+	], 404);
 }
 
 // Create the "controller Instance"

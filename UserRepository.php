@@ -20,8 +20,8 @@ class UserRepository implements UserInterface
 	/**
 	 * @throws JsonException
 	 */
-	public function index(): bool|string
+	public function index(): bool|string|array
 	{
-		return json_encode($this->connection->query("SELECT * FROM users")->fetch(PDO::FETCH_ASSOC), JSON_THROW_ON_ERROR);
+		return $this->connection->query("SELECT * FROM users")->fetch(PDO::FETCH_ASSOC);
 	}
 }

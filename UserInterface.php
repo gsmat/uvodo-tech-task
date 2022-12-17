@@ -4,5 +4,5 @@ interface UserInterface
 {
 	public function store(User $user);
 
-	public function index(): bool|string;
+	public function index(): bool|string|array;
 }

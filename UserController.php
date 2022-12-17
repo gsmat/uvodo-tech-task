@@ -15,7 +15,7 @@ class UserController
 		$this->users->store($user);
 	}
 
-	public function getUsers(): bool|string
+	public function getUsers(): bool|string|array
 	{
 		return $this->users->index();
 	}
